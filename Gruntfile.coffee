@@ -40,6 +40,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'build', ['coffee']
 
   # Load grunt modules
+  grunt.loadNpmTasks('grunt-bump')
   grunt.loadNpmTasks('grunt-contrib-coffee')
   grunt.loadNpmTasks('grunt-contrib-watch')
   grunt.loadTasks('tasks')
