@@ -31,8 +31,8 @@ grunt.initConfig({
       apiKey: 'api-key',  // The API key for your Ghost Inspector account
     },
     production: {
-      suites: ['suite-id-1', 'suite-id-2', ...],  // The IDs of any suites to execute
-      tests: ['test-id-1', 'test-id-2', ...]  // The IDs of any tests to execute
+      suites: ['suite-id-1', 'suite-id-2', ...],  // IDs of any suites to execute
+      tests: ['test-id-1', 'test-id-2', ...]  // IDs of any tests to execute
     },
     staging: {
       tests: ['test-id-1', 'test-id-2', ...],
