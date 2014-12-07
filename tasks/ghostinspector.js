@@ -3,26 +3,28 @@ var async;
 async = require('async');
 
 module.exports = function(grunt) {
-  return grunt.registerTask('ghostinspector', 'Execute your Ghost Inspector tests', function() {
-    var GhostInspector, gruntDone, options;
+  return grunt.registerMultiTask('ghostinspector', 'Execute your Ghost Inspector tests', function() {
+    var GhostInspector, gruntDone, options, suites, tests;
     gruntDone = this.async();
     options = this.options();
-    if (typeof options.suites === 'string') {
-      options.suites = [options.suites];
-    } else if (!(options.suites instanceof Array)) {
-      options.suites = [];
+    suites = this.data.suites;
+    if (typeof suites === 'string') {
+      suites = [suites];
+    } else if (!(suites instanceof Array)) {
+      suites = [];
     }
-    if (typeof options.tests === 'string') {
-      options.tests = [options.tests];
-    } else if (!(options.tests instanceof Array)) {
-      options.tests = [];
+    tests = this.data.tests;
+    if (typeof tests === 'string') {
+      tests = [tests];
+    } else if (!(tests instanceof Array)) {
+      tests = [];
     }
     GhostInspector = require('ghost-inspector')(options.apiKey);
-    if (options.suites.length) {
+    if (suites.length) {
       grunt.log.writeln('Executing suites...');
     }
-    return async.eachSeries(options.suites, function(suiteId, done) {
-      return GhostInspector.executeSuite(suiteId, function(err, data, passing) {
+    return async.eachSeries(suites, function(suiteId, done) {
+      return GhostInspector.executeSuite(suiteId, options, function(err, data, passing) {
         if (err) {
           return done('Error executing suite "' + suiteId + '": ' + err);
         }
@@ -38,11 +40,11 @@ module.exports = function(grunt) {
         grunt.log.error(err);
         return gruntDone(false);
       }
-      if (options.suites.length) {
+      if (tests.length) {
         grunt.log.writeln('Executing tests...');
       }
-      return async.eachSeries(options.tests, function(testId, done) {
-        return GhostInspector.executeTest(testId, function(err, data, passing) {
+      return async.eachSeries(tests, function(testId, done) {
+        return GhostInspector.executeTest(testId, options, function(err, data, passing) {
           if (err) {
             return done('Error executing test "' + data.test.name + '" (' + testId + '): ' + err);
           }

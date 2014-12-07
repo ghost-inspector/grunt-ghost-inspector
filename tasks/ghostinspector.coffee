@@ -3,31 +3,36 @@ async = require('async')
 module.exports = (grunt) ->
 
   # register "ghostinspector" task
-  grunt.registerTask 'ghostinspector', 'Execute your Ghost Inspector tests', () ->
+  grunt.registerMultiTask 'ghostinspector', 'Execute your Ghost Inspector tests', () ->
 
     # reference to Grunt done() function
     gruntDone = @async()
 
+    # get options
     options = @options()
+
     # get suites to execute
-    if typeof options.suites is 'string'
-      options.suites = [options.suites]
-    else if options.suites not instanceof Array
-      options.suites = []
+    suites = @data.suites
+    if typeof suites is 'string'
+      suites = [suites]
+    else if suites not instanceof Array
+      suites = []
+
     # get tests to execute
-    if typeof options.tests is 'string'
-      options.tests = [options.tests]
-    else if options.tests not instanceof Array
-      options.tests = []
+    tests = @data.tests
+    if typeof tests is 'string'
+      tests = [tests]
+    else if tests not instanceof Array
+      tests = []
 
     # create Ghost Inspector object
     GhostInspector = require('ghost-inspector')(options.apiKey)
 
     # execute any specified suites
-    if options.suites.length then grunt.log.writeln('Executing suites...')
-    async.eachSeries options.suites, (suiteId, done) ->
+    if suites.length then grunt.log.writeln('Executing suites...')
+    async.eachSeries suites, (suiteId, done) ->
       # execute suite
-      GhostInspector.executeSuite suiteId, (err, data, passing) ->
+      GhostInspector.executeSuite suiteId, options, (err, data, passing) ->
         # evaluate api response
         if err then return done('Error executing suite "' + suiteId + '": ' + err)
         if passing
@@ -36,16 +41,17 @@ module.exports = (grunt) ->
         else
           done('Suite "' + suiteId + '" failed.')
     , (err) ->
-      # done with any suites, bail if we hit an error/failure
+
+      # done with suites, bail if we hit an error/failure
       if err
         grunt.log.error(err)
         return gruntDone(false)
 
       # execute any specified tests
-      if options.suites.length then grunt.log.writeln('Executing tests...')
-      async.eachSeries options.tests, (testId, done) ->
+      if tests.length then grunt.log.writeln('Executing tests...')
+      async.eachSeries tests, (testId, done) ->
         # execute test
-        GhostInspector.executeTest testId, (err, data, passing) ->
+        GhostInspector.executeTest testId, options, (err, data, passing) ->
           # evaluate api response
           if err then return done('Error executing test "' + data.test.name + '" (' + testId + '): ' + err)
           if passing
@@ -54,7 +60,8 @@ module.exports = (grunt) ->
           else
             done('Test "' + data.test.name + '" (' + testId + ') failed')
       , (err) ->
-        # done with any tests, bail if we hit an error/failure
+
+        # done with tests, bail if we hit an error/failure
         if err
           grunt.log.error(err)
           return gruntDone(false)
