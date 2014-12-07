@@ -1,0 +1,50 @@
+{
+  "name": "grunt-ghost-inspector",
+  "version": "1.0.0",
+  "description": "Grunt Plugin for Ghost Inspector",
+  "homepage": "https://github.com/ghost-inspector/grunt-ghost-inspector",
+  "author": {
+    "name": "Justin Klemm",
+    "email": "justin@ghostinspector.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ghost-inspector/grunt-ghost-inspector.git"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/grunt ghostinspector"
+  },
+  "main": "tasks/ghostinspector.js",
+  "dependencies": {
+    "async": "0.2.5",
+    "ghost-inspector": "~1.1.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-bump": "~0.0.16",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-coffee": "~0.12.0",
+    "grunt-contrib-watch": "~0.6.1"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.5"
+  },
+  "keywords": [
+    "grunt",
+    "ghost",
+    "inspector",
+    "ghost inspector",
+    "ghostinspector",
+    "test",
+    "testing",
+    "automated testing",
+    "browser testing",
+    "automated browser testing",
+    "selenium"
+  ],
+  "license": "MIT",
+  "readmeFilename": "README.md"
+}
