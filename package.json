@@ -1,7 +1,7 @@
 {
   "name": "grunt-ghost-inspector",
   "version": "1.0.0",
-  "description": "Grunt Plugin for Ghost Inspector",
+  "description": "Grunt plugin for executing Ghost Inspector automated UI tests",
   "homepage": "https://github.com/ghost-inspector/grunt-ghost-inspector",
   "author": {
     "name": "Justin Klemm",

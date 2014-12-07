@@ -1,6 +1,6 @@
 # Grunt Plugin for Ghost Inspector
 
-> Grunt plugin for executing Ghost Inspector automated browser tests.
+> Grunt plugin for executing Ghost Inspector automated UI tests.
 
 [![Build Status](https://travis-ci.org/ghost-inspector/grunt-ghost-inspector.png)](https://travis-ci.org/ghost-inspector/grunt-ghost-inspector)
 
