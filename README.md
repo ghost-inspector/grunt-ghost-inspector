@@ -2,7 +2,7 @@
 
 > Grunt plugin for executing Ghost Inspector automated UI tests.
 
-[![Build Status](https://travis-ci.org/ghost-inspector/grunt-ghost-inspector.png)](https://travis-ci.org/ghost-inspector/grunt-ghost-inspector)
+[![Circle CI](https://circleci.com/gh/ghost-inspector/grunt-ghost-inspector.svg?style=svg)](https://circleci.com/gh/ghost-inspector/grunt-ghost-inspector)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.2`
