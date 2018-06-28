@@ -1,36 +1,38 @@
 {
   "name": "grunt-ghost-inspector",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Grunt plugin for executing Ghost Inspector automated UI tests",
   "homepage": "https://github.com/ghost-inspector/grunt-ghost-inspector",
   "author": {
-    "name": "Justin Klemm",
-    "email": "justin@ghostinspector.com"
+    "name": "Ghost Inspector",
+    "email": "help@ghostinspector.com"
   },
   "repository": {
     "type": "git",
     "url": "http://github.com/ghost-inspector/grunt-ghost-inspector.git"
   },
   "engines": {
-    "node": "'>= 0.10.0"
+    "node": ">=8.0.0"
   },
   "scripts": {
     "test": "./node_modules/.bin/grunt ghostinspector"
   },
   "main": "tasks/ghostinspector.js",
   "dependencies": {
-    "async": "~1.5.2",
-    "ghost-inspector": "~2.0.0"
+    "async": "^1.5.2",
+    "ghost-inspector": "^2.0.0"
   },
   "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-bump": "0.7.0",
-    "grunt-cli": "0.1.13",
-    "grunt-contrib-coffee": "1.0.0",
-    "grunt-contrib-watch": "0.6.1"
+    "eslint": "^5.0.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0",
+    "grunt": "^1.0.0"
   },
   "peerDependencies": {
-    "grunt": ">=0.4.0"
+    "grunt": ">=1.0.0"
   },
   "keywords": [
     "grunt",
