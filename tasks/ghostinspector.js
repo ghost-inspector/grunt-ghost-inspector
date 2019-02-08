@@ -24,12 +24,16 @@ module.exports = (grunt) => {
     // create Ghost Inspector object
     const GhostInspector = require('ghost-inspector')(options.apiKey)
     // execute any specified suites
-    if (suites.length) { grunt.log.writeln('Executing suites...') }
+    if (suites.length) {
+      grunt.log.writeln('Executing suites...')
+    }
     async.eachSeries(suites, (suiteId, done) => {
       // execute suite
       GhostInspector.executeSuite(suiteId, options, (err, data, passing) => {
         // evaluate api response
-        if (err) { return done(`Error executing suite "${suiteId}": ${err}`) }
+        if (err) {
+          return done(`Error executing suite "${suiteId}": ${err}`)
+        }
         if (passing) {
           grunt.log.ok(`Suite "${suiteId}" passed.`)
           return done()
@@ -44,12 +48,16 @@ module.exports = (grunt) => {
         return gruntDone(false)
       }
       // execute any specified tests
-      if (tests.length) { grunt.log.writeln('Executing tests...') }
+      if (tests.length) {
+        grunt.log.writeln('Executing tests...')
+      }
       async.eachSeries(tests, (testId, done) => {
         // execute test
         GhostInspector.executeTest(testId, options, (err, data, passing) => {
           // evaluate api response
-          if (err) { return done(`Error executing test "${data.test.name}" (${testId}): ${err}`) }
+          if (err) {
+            return done(`Error executing test "${data.test.name}" (${testId}): ${err}`)
+          }
           if (passing) {
             grunt.log.ok(`Test "${data.test.name}" (${testId}) passed.`)
             return done()
