@@ -3,7 +3,7 @@ module.exports = (grunt) => {
   grunt.initConfig({
     ghostinspector: {
       options: {
-        apiKey: 'ff586dcaaa9b781163dbae48a230ea1947f894ff'
+        apiKey: process.env.GHOST_INSPECTOR_API_KEY
       },
       test1: {
         suites: ['53cf58c0350c6c41029a11be']
