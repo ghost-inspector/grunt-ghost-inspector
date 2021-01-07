@@ -1,6 +1,6 @@
 {
   "name": "grunt-ghost-inspector",
-  "version": "2.0.7",
+  "version": "2.1.0",
   "description": "Grunt plugin for executing Ghost Inspector automated UI tests",
   "homepage": "https://github.com/ghost-inspector/grunt-ghost-inspector",
   "author": {
